@@ -1,0 +1,38 @@
+<div class="jumbotron jumbotron-fluid">
+
+</div>
+
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 align-self-center">
+      <input placeholder="What needs to be done?" type="text" name="todoText"
+             class="form-control" [(ngModel)]="todoText" (keyup.enter)="onAddTodoText()" />
+    </div>
+
+    <div class="col-2">
+      <button class="btn btn-sm btn-warning btn-block" (click)="onClearTodoText()">Clear All</button>
+    </div>
+  </div>
+
+  <hr>
+
+
+  <div class="row">
+    <div class="col">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action" *ngFor="let todo of todoList; let i = index">
+          <div class="d-flex w-100 justify-content-between">
+            <input type="checkbox" class="form-check-input" [(ngModel)]="todo.isCompleted">
+            <h5 class="mb-1" >{{todo.text}}</h5>
+            <button class="btn btn-sm btn-warning" *ngIf="!todo.isCompleted" (click)="onCompletingTask(todo.todoId)">X</button>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    {{calculateItems()}} Items left
+  </p>
+
+</div>
